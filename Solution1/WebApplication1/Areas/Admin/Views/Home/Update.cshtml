@@ -1,0 +1,25 @@
+﻿@model ItemUpdateVM
+<div>
+    <h2>Create Item</h2>
+    <form method="post">
+        <div class="form-outline mb-4">
+            <input type="text" id="Title" asp-for="Title" class="form-control" />
+            <label class="form-label">Title</label>
+            <span asp-validation-for="Title"></span>
+        </div>
+        <div class="form-outline mb-4">
+            <input asp-for="Description" type="text" id="Description" class="form-control" />
+            <label class="form-label">Description</label>
+            <span asp-validation-for="Description"></span>
+
+        </div>
+        <div class="form-outline mb-4">
+            <input type="text" id="ImagePath" asp-for="ImagePath" class="form-control" />
+            <label class="form-label">ImagePath</label>
+            <span asp-validation-for="ImagePath"></span>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary ">Submit</button>
+    </form>
+</div>

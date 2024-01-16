@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ItemListItem>
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+      
+    </style>
+</head>
+<body>
+
+    <h2>Items List</h2>
+    <a asp-action="Create"><h3>Create</h3></a>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>ImagePath</th>
+            <th>IsDeleted</th>
+            <th>Update</th>
+            <th>Delete</th>
+            <th>SoftDelete</th>
+            <th>ReverseSoftDelete</th>
+
+
+        </tr>
+        @foreach(var item in Model)
+        {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Title</td>
+            <td>@item.Description</td>
+            <td>@item.ImagePath</td>
+            <td>@item.IsDeleted</td>
+                <td><a asp-action="Update" asp-route-id="@item.Id">Update</a></td>
+                <td><a asp-action="Delete" asp-route-id="@item.Id">Update</a></td>
+            <td>SoftDelete</td>
+            <td>ReverseSoftDelete</td> 
+        </tr>
+        }
+    
+    </table>
+
+</body>
+</html>
+
