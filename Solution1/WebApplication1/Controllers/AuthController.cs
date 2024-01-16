@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Context;
+using WebApplication1.Helpers;
 using WebApplication1.Models;
 using WebApplication1.ViewModel.AuthVM;
 
@@ -11,11 +12,13 @@ namespace WebApplication1.Controllers
         Day2DbContext _db { get; }
         UserManager<AppUser> _userManager { get; }
         SignInManager<AppUser> _signInManager { get;  }
-        public AuthController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, Day2DbContext db)
+        RoleManager<IdentityRole> _roleManager { get; }
+        public AuthController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, Day2DbContext db, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _db = db;
+            _roleManager = roleManager;
         }
 
         public IActionResult Register()
@@ -77,6 +80,16 @@ namespace WebApplication1.Controllers
             return RedirectToAction(nameof(Index), "Home");
         }
 
-        publix
+        //public async Task<IActionResult> CreateRoles()
+        //{
+        //    foreach (var item in Enum.GetValues(nameof(Enum.GetType(Roles))))
+        //    {
+        //        if (_roleManager.RoleExistsAsync(item))
+        //        {
+        //            var result = _roleManager.CreateAsync(item);
+        //        }
+        //    }
+        //    if (_roleManager.RoleExistsAsync)
+        //}
     }
 }
