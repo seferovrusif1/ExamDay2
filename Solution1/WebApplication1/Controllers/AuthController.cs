@@ -80,16 +80,23 @@ namespace WebApplication1.Controllers
             return RedirectToAction(nameof(Index), "Home");
         }
 
-        //public async Task<IActionResult> CreateRoles()
-        //{
-        //    foreach (var item in Enum.GetValues(nameof(Enum.GetType(Roles))))
-        //    {
-        //        if (_roleManager.RoleExistsAsync(item))
-        //        {
-        //            var result = _roleManager.CreateAsync(item);
-        //        }
-        //    }
-        //    if (_roleManager.RoleExistsAsync)
-        //}
+        public async Task<bool> CreateRoles()
+        {
+            foreach (var item in Enum.GetValues(typeof(Roles)))
+            {
+                if (! await _roleManager.RoleExistsAsync(item.ToString()))
+                {
+                    var result = await _roleManager.CreateAsync(new IdentityRole
+                    {
+                        Name=item.ToString(),
+                    });
+                    if (!result.Succeeded)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
     }
 }
